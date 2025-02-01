@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Image Encryption</title>
+    <title>Home - Image Encrypter</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Image Encryption/Decryption</h1>
-    
-    <h2>Encrypt Image</h2>
-    <form action="{{ url_for('encrypt') }}" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
-        <input type="password" name="password" placeholder="Enter password" required>
-        <button type="submit">Encrypt</button>
-    </form>
-    
-    <h2>Decrypt Image</h2>
-    <form action="{{ url_for('decrypt') }}" method="post" enctype="multipart/form-data">
-        <input type="file" name="encrypted_file" accept=".txt" required>
-        <input type="password" name="password" placeholder="Enter password" required>
-        <button type="submit">Decrypt</button>
-    </form>
-
+    <header>
+        <div class="title-block">
+            <h1 class="title-text">Image Encrypter</h1>
+        </div>
+    </header>
+    <main class="container">
+        <section class="content">
+            <h2>Welcome to the Image Encrypter App</h2>
+            <p>Choose an action to get started:</p>
+            <div class="button-group">
+                <button onclick="window.location.href='{{ url_for('encrypt') }}'">Encrypt Image</button>
+                <button onclick="window.location.href='{{ url_for('decrypt') }}'">Decrypt Image</button>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Image Encrypter App. All rights reserved.</p>
+    </footer>
 </body>
 </html>
