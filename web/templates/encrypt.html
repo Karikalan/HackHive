@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="title-block">
+            <h1 class="title-text">Encrypt Image</h1>
+        </div>
+    </header>
+    <main class="container">
+        <section class="content">
+            <form action="{{ url_for('encrypt') }}" method="post" enctype="multipart/form-data">
+                <div class="image-upload">
+                    <input id="file-input" type="file" name="image" accept="image/*" required onchange="showImagePreview(this);">
+                    <img id="image-preview" class="preview-image" style="display: none;">
+                    <span id="add-file-text">+ ADD IMAGE</span>
+                </div>
+                <div class="password-section">
+                    <div class="password-input-wrapper">
+                        <input id="password-input" type="password" name="password" placeholder="PASSWORD" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <img src="{{ url_for('static', filename='images/eye-icon.png') }}" alt="Show/Hide Password">
+                        </span>
+                    </div>
+                    <button type="submit">ENCRYPT</button>
+                </div>
+            </form>
+            <button class="back-to-home" onclick="window.location.href='{{ url_for('home') }}'">Back to Home</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Image Encrypter App. All rights reserved.</p>
+    </footer>
+    <script>
+        function showImagePreview(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById('image-preview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                document.getElementById('add-file-text').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password-input');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>

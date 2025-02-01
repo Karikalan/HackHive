@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decryption Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="title-block">
+            <h1 class="title-text">Decryption Result</h1>
+        </div>
+    </header>
+    <main class="container">
+        <section class="content">
+            <p>The file has been successfully decrypted and saved as <strong>{{ decrypted_file }}</strong>.</p>
+            <a id="download-link" class="download-link" href="{{ url_for('download_file', filename=decrypted_file) }}" download>
+                <button>Download Decrypted Image</button>
+            </a>
+            <button class="back-to-home" onclick="window.location.href='{{ url_for('home') }}'">Back to Home</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Image Encrypter App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
