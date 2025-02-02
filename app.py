@@ -64,8 +64,12 @@ def decrypt():
             return render_template('decrypt.html', error=str(e))
     return render_template('decrypt.html')
 
-@app.route('/download/<filename>')
+@app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
+    custom_name = request.args.get('name')
+    file_extension = request.args.get('extension')
+    if custom_name and file_extension:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True, download_name=custom_name + file_extension)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':

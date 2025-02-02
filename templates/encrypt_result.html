@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 80vh;
+        }
+        .content {
+            text-align: center;
+        }
+        .filename-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .filename-section input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title-block">
+            <h1 class="title-text">Encryption Result</h1>
+        </div>
+    </header>
+    <main class="container">
+        <section class="content">
+            <p>The image has been successfully encrypted.</p>
+            <form action="{{ url_for('download_file', filename=encrypted_file) }}" method="get">
+                <div class="filename-section">
+                    <input id="filename-input" type="text" name="name" placeholder="Enter file name" required>
+                    <select id="file-extension" name="extension" required>
+                        <option value=".txt">.txt</option>
+                    </select>
+                    <button type="submit">Download Encrypted Image</button>
+                </div>
+            </form>
+            <button class="back-to-home" onclick="window.location.href='{{ url_for('home') }}'">Back to Home</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Image Encrypter App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* ...existing code... */
+        .password-section button,
+        .back-to-home {
+            width: 100%;
+            max-width: 250px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title-block">
+            <h1 class="title-text">Encrypt Image</h1>
+        </div>
+    </header>
+    <main class="container">
+        <section class="content">
+            <form action="{{ url_for('encrypt') }}" method="post" enctype="multipart/form-data">
+                <div class="image-upload" onclick="document.getElementById('file-input').click();">
+                    <input id="file-input" type="file" name="image" accept="image/*" required style="display: none;" onchange="previewImage();">
+                    <label for="file-input" class="add-file-text">+ ADD IMAGE</label>
+                    <img id="image-preview" class="preview-image" style="display: none;">
+                    <button type="button" id="remove-image" class="remove-image" style="display: none;" onclick="resetUpload();">&#10005;</button>
+                </div>
+                <div class="password-section">
+                    <div class="password-input-wrapper">
+                        <input id="password-input" type="password" name="password" placeholder="PASSWORD" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <img src="{{ url_for('static', filename='images/eye-icon.png') }}" alt="Show/Hide Password">
+                        </span>
+                    </div>
+                    <button type="submit">ENCRYPT</button>
+                </div>
+            </form>
+            <button class="back-to-home" onclick="window.location.href='{{ url_for('home') }}'">Back to Home</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Image Encrypter App. All rights reserved.</p>
+    </footer>
+    <script>
+        function previewImage() {
+            var fileInput = document.getElementById('file-input');
+            var imagePreview = document.getElementById('image-preview');
+            var removeButton = document.getElementById('remove-image');
+            var addFileText = document.querySelector('.add-file-text');
+
+            if (fileInput.files && fileInput.files[0]) {
+                imagePreview.src = window.URL.createObjectURL(fileInput.files[0]);
+                imagePreview.style.display = 'block';
+                removeButton.style.display = 'flex';
+                addFileText.style.display = 'none';
+            }
+        }
+
+        function resetUpload() {
+            var fileInput = document.getElementById('file-input');
+            var imagePreview = document.getElementById('image-preview');
+            var removeButton = document.getElementById('remove-image');
+            var addFileText = document.querySelector('.add-file-text');
+
+            fileInput.value = '';
+            imagePreview.style.display = 'none';
+            removeButton.style.display = 'none';
+            addFileText.style.display = 'block';
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password-input');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>

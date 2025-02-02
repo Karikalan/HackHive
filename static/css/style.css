@@ -1,12 +1,13 @@
+/* General Styles */
 body {
     background-color: #121212;
     color: #FFFFFF;
     font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Full height of the viewport */
+    height: 100vh;
     margin: 0;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
 header {
@@ -14,7 +15,7 @@ header {
     padding: 20px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    flex-shrink: 0; /* Prevents shrinking */
+    flex-shrink: 0;
 }
 
 .title-block {
@@ -36,7 +37,7 @@ header {
     padding: 20px;
     text-align: center;
     position: relative;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
 .content {
@@ -47,54 +48,34 @@ header {
     padding: 60px;
     text-align: center;
     position: relative;
-    top: -50px; /* Moves the content section upward */
-    height: 70%; /* Slightly larger height */
-    overflow: hidden; /* Prevent scrolling */
+    top: -35px;
+    height: 70%;
+    overflow: hidden;
 }
 
-.content h2 {
-    font-size: 1.8em;
-    margin-bottom: 15px; /* Reduced margin-bottom */
-    color: #FFFFFF;
-}
-
-.content p {
-    font-size: 1.2em;
-    margin-bottom: 15px; /* Reduced margin-bottom */
-    color: #FFFFFF;
-}
-
+/* Image Upload Styles */
 .image-upload {
-    width: 250px; /* Reduced width */
-    height: 250px; /* Reduced height */
+    position: relative;
+    width: 250px;
+    height: 250px;
     border: 2px dashed #BBBBBB;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #BBBBBB;
-    margin-bottom: 15px; /* Reduced margin-bottom */
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.image-upload input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+    margin-bottom: 15px;
     cursor: pointer;
 }
 
-.image-upload .preview-text {
+.add-file-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #BBBBBB;
-    font-size: 1.2em;
     pointer-events: none;
-    user-select: none;
+    color: #BBBBBB;
+    display: block;
+}
+
+#file-input:valid + .add-file-text {
+    display: none;
 }
 
 .preview-image {
@@ -103,9 +84,45 @@ header {
     width: auto;
     height: auto;
     object-fit: contain;
-    border: 2px solid #000;
+    display: none;
 }
 
+#file-input:valid ~ .preview-image {
+    display: block;
+}
+
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #FFFFFF;
+    background-color: #FF0000;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1em;
+    display: none;
+}
+
+#file-input:valid ~ .remove-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* File Preview Styles */
+.file-preview {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    word-break: break-all;
+}
+
+#file-input:valid ~ .file-preview {
+    display: block;
+}
+
+/* Password Section Styles */
 .password-section {
     display: flex;
     flex-direction: column;
@@ -120,8 +137,8 @@ header {
 
 .password-input-wrapper input {
     width: 80%;
-    padding: 10px; /* Reduced padding */
-    padding-right: 35px; /* Reduced padding-right */
+    padding: 10px;
+    padding-right: 35px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #2E2E2E;
@@ -145,20 +162,21 @@ header {
     background-color: #FFFFFF;
     color: #121212;
     border: none;
-    padding: 10px 15px; /* Reduced padding */
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 1em;
     width: 100%;
-    max-width: 200px; /* Reduced max-width */
-    margin-top: 10px; /* Reduced margin-top */
+    max-width: 200px;
+    margin-top: 10px;
 }
 
 .password-section button:hover {
     background-color: #BBBBBB;
 }
 
+/* Footer Styles */
 .footer {
     background-color: #1F1F1F;
     padding: 10px;
@@ -168,29 +186,43 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
-    flex-shrink: 0; /* Prevents shrinking */
+    flex-shrink: 0;
 }
 
+/* Download Button Styles */
 .download-link button {
     background-color: #FFFFFF;
     color: #121212;
     border: none;
-    padding: 10px 15px; /* Reduced padding */
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 1em;
-    margin-bottom: 10px; /* Reduced margin-bottom */
+    margin-bottom: 10px;
 }
 
 .download-link button:hover {
     background-color: #BBBBBB;
 }
 
+/* Back to Home Button Styles */
 .back-to-home {
     position: absolute;
-    bottom: 80px; /* Ensures the button sits above the footer */
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px; /* Adjust as needed */
+    width: 200px;
+}
+
+/* Filename Section Styles */
+.filename-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.filename-section input {
+    margin-right: 10px;
 }
